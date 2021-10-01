@@ -1,0 +1,37 @@
+﻿@model IEnumerable<WA_EGroceryShop_v2.Domain.DomainModels.Order>
+
+
+<h1>Orders</h1>
+<br />
+
+<div class="row">
+    <a class="btn btn-outline-success" asp-controller="Order" asp-action="ExportAllOrders">Export Orders</a>
+</div>
+
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Email)
+                </td>
+                <td>
+                    <a asp-action="GetDetailsForOrder" asp-route-id="@item.Id">Details</a>
+                </td>
+
+                <td><a class="btn btn-outline-secondary" asp-action="CreateInvoice" asp-route-id="@item.Id">Create Invoice</a></td>
+
+            </tr>
+        }
+    </tbody>
+</table>

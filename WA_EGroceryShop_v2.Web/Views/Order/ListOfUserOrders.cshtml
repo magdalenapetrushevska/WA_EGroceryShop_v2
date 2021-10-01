@@ -1,0 +1,172 @@
+﻿@model IList<WA_EGroceryShop_v2.Domain.DomainModels.Order>
+
+
+<h1>List of past purchases</h1>
+
+@*<p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Order Id:
+                </th>
+                <th>
+                    <b> Ordered products: </b>
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @{
+                            var totalPrice = 0;
+                        }
+
+                        @foreach (var ord in item.ProductInOrders)
+                        {
+                            <p><b>Product name: </b>  @ord.OrderedProduct.Name </p>
+                            <p><b>Product image:</b> </p> <img src="~/Images/ProductImages/@ord.OrderedProduct.ImageName" style="height:100px; width:100px;" />
+                            <p><b>Quantity:</b> @ord.Quantity </p>
+                            totalPrice = totalPrice + (ord.OrderedProduct.Price * ord.Quantity);
+                            <hr />
+                        }
+                        <h6 style="color:red">Total paid: @totalPrice $ </h6>
+
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>*@
+
+@{
+
+    if (Model.Count > 0)
+    {
+        foreach (var order in Model)
+        {
+    <div class="container card mb-3 ml-4 mt-5" style="background-color: #f8f8f8;">
+        <div class="row mt-3">
+            <div class="col-9">
+
+            </div>
+            <div class="col-3">
+            <a class="btn btn-success" asp-action="CreateInvoice" asp-route-id="@order.Id">Create Invoice</a>
+            </div>
+        </div>
+        <div class="ml-5">
+           
+            <h4>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-receipt" viewBox="0 0 16 16">
+                    <path d="M1.92.506a.5.5 0 0 1 .434.14L3 1.293l.646-.647a.5.5 0 0 1 .708 0L5 1.293l.646-.647a.5.5 0 0 1 .708 0L7 1.293l.646-.647a.5.5 0 0 1 .708 0L9 1.293l.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .801.13l.5 1A.5.5 0 0 1 15 2v12a.5.5 0 0 1-.053.224l-.5 1a.5.5 0 0 1-.8.13L13 14.707l-.646.647a.5.5 0 0 1-.708 0L11 14.707l-.646.647a.5.5 0 0 1-.708 0L9 14.707l-.646.647a.5.5 0 0 1-.708 0L7 14.707l-.646.647a.5.5 0 0 1-.708 0L5 14.707l-.646.647a.5.5 0 0 1-.708 0L3 14.707l-.646.647a.5.5 0 0 1-.801-.13l-.5-1A.5.5 0 0 1 1 14V2a.5.5 0 0 1 .053-.224l.5-1a.5.5 0 0 1 .367-.27zm.217 1.338L2 2.118v11.764l.137.274.51-.51a.5.5 0 0 1 .707 0l.646.647.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.646.646.646-.646a.5.5 0 0 1 .708 0l.509.509.137-.274V2.118l-.137-.274-.51.51a.5.5 0 0 1-.707 0L12 1.707l-.646.647a.5.5 0 0 1-.708 0L10 1.707l-.646.647a.5.5 0 0 1-.708 0L8 1.707l-.646.647a.5.5 0 0 1-.708 0L6 1.707l-.646.647a.5.5 0 0 1-.708 0L4 1.707l-.646.647a.5.5 0 0 1-.708 0l-.509-.51z" />
+                    <path d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm8-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5z" />
+                </svg> Order
+            </h4>
+            <br />
+            <div class="row">
+                <div class="">
+
+                    <div class="mb-2">
+                        <p class="d-inline"><b>Order id:</b> @order.Id</p>
+                    </div>
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                            <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                        </svg>
+                        <p class="d-inline"><b>Ordered by: </b> @order.User.Email</p>
+                    </div>
+                    <br />
+                    <br />
+                    <p class="d-inline"><b>Ordered products:</b> </p>
+                    <div>
+                        @* @{
+                            var totalPrice = 0;
+                        }
+                        @foreach (var ord in order.ProductInOrders)
+                        {
+                            <p><b>Product name: </b>  @ord.OrderedProduct.Name </p>
+                            <p><b>Product image:</b> </p> <img src="~/Images/ProductImages/@ord.OrderedProduct.ImageName" style="height:100px; width:100px;" />
+                            <p><b>Quantity:</b> @ord.Quantity </p>
+                            totalPrice = totalPrice + (ord.OrderedProduct.Price * ord.Quantity);
+                            <hr />
+                        }*@
+
+                        <table class="table mt-3 mb-3 ml-5">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Product name:
+                                    </th>
+                                    <th>
+                                        Product image:
+                                    </th>
+                                    <th>
+                                        Quantity:
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    var totalPrice = 0;
+                                }
+
+                                @foreach (var ord in order.ProductInOrders)
+                                {
+                                    <tr>
+                                        <td>
+                                            @ord.OrderedProduct.Name
+                                        </td>
+                                        <td>
+                                            <img src="~/Images/ProductImages/@ord.OrderedProduct.ImageName" style="height:100px; width:100px;" />
+                                        </td>
+                                        <td>
+
+
+                                            @ord.Quantity
+                                            @{
+                                                totalPrice = totalPrice + (ord.OrderedProduct.Price * ord.Quantity);
+                                            }
+
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+
+
+
+
+
+                    </div>
+
+                    <h6 style="color:red">Total paid: @totalPrice $ </h6>
+
+
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+        }
+    }
+    else
+    {
+
+
+    }
+}

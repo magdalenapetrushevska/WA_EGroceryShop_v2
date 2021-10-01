@@ -1,0 +1,213 @@
+﻿@model List<WA_EGroceryShop_v2.Domain.DomainModels.Product>
+
+
+
+<h1>Search results:</h1>
+
+
+<br />
+<br />
+
+@*@{
+        foreach (var subcat in ViewBag.Subcategories)
+        {
+
+
+
+            <a asp-action="GetProductsBySubcategory" asp-route-id="@subcat" class="btn btn-outline-primary btn-lg mr-3">@subcat</a>
+        }
+    }
+
+    <br />
+    <br />
+*@
+
+
+
+<div class="container mt-2">
+
+    @{
+        if (Model.Count == 0)
+        {
+            <h5>Your search - <span style="color:red;"> @ViewBag.SearchWord </span> - did not match any products.</h5>
+            
+             
+                    <img src="~/Images/ProjectImages/searchResults1.png" style="height:350px; width:400px;" class="mt-3"/>
+               
+            
+        }
+    }
+
+
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        var item = Model[i];
+
+        if (i % 3 == 0)
+        {
+            @:<div class="row mb-5">
+            }
+
+
+            <div class="col-4">
+                <div class="card" style="width: 20rem; height: auto;">
+                    <img class="card-img-top" src="~/Images/ProductImages/@item.ImageName" alt="Image for product!" />
+
+                    <div class="card-body mt-2 mb-0">
+                        <h3 class="card-title d-inline mr-5 ml-4">@item.Name</h3>
+                        <a href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-handbag" viewBox="0 0 16 16">
+                                <path d="M8 1a2 2 0 0 1 2 2v2H6V3a2 2 0 0 1 2-2zm3 4V3a3 3 0 1 0-6 0v2H3.36a1.5 1.5 0 0 0-1.483 1.277L.85 13.13A2.5 2.5 0 0 0 3.322 16h9.355a2.5 2.5 0 0 0 2.473-2.87l-1.028-6.853A1.5 1.5 0 0 0 12.64 5H11zm-1 1v1.5a.5.5 0 0 0 1 0V6h1.639a.5.5 0 0 1 .494.426l1.028 6.851A1.5 1.5 0 0 1 12.678 15H3.322a1.5 1.5 0 0 1-1.483-1.723l1.028-6.851A.5.5 0 0 1 3.36 6H5v1.5a.5.5 0 1 0 1 0V6h4z" />
+                            </svg>
+                        </a>
+                        <div class="ml-4 mt-2">
+                            @{
+                                if (!item.HasDiscount)
+                                {
+                                    <h6 style="color: darkblue;">Price: $ @item.Price</h6>
+                                }
+                                else
+                                {
+                                    <del> <h6 style="color:red">Price: $ @item.Price</h6> </del>
+                                    <h6 style="color:darkblue">Price: $ @item.DiscountPrice</h6>
+                                }
+                            }
+                           @* <div class="ml-5 pl-5">
+                                <div class="ml-5 pl-5">
+                                    <a asp-action="AddToFavoriteProducts" asp-route-id="@item.Id" class="btn btn-sm" style="background-color: #FFC1CC">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+                                             class="bi bi-heart" viewBox="0 0 16 16">
+                                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>*@
+                        </div>
+
+                        @* @{
+                                if (item.HasDiscount)
+                                {
+                                    <h6>Popust: IMA</h6>
+                                }
+                                else
+                                {
+                                    <h6>Popust: NEMA</h6>
+                                }
+
+                            }
+                            <h6>Discount Price: @item.DiscountPrice</h6>*@
+                    </div>
+
+                    @*<div class="card-footer">
+
+                            <a asp-controller="Products" asp-action="AddProductToCart" asp-route-id="@item.Id" class="btn btn-info">Add to Cart</a>
+                            <a asp-controller="Products" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary">Edit</a>
+                            <a asp-controller="ProductPromotions" asp-action="Create" asp-route-id="@item.Id" class="btn btn-primary">Napravi promocija</a>
+                            <a asp-controller="Products" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                            <a asp-controller="Products" asp-action="AddToFavoriteProducts" asp-route-id="@item.Id" class="btn btn-warning">Add to favorites</a>
+
+                        </div>*@
+                </div>
+            </div>
+
+
+
+            if (i % 3 == 2)
+            {
+            @:</div>
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @*
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ImageName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Category)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Subcategory)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BrandName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Origin)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Rating)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            <img src="~/Images/ProductImages/@item.ImageName" style="height:200px; width:200px;" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Category)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Subcategory)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BrandName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Origin)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Rating)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>*@

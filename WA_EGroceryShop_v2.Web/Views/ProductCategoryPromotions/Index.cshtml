@@ -1,0 +1,95 @@
+﻿@model IEnumerable<WA_EGroceryShop_v2.Domain.DomainModels.ProductCategoryPromotion>
+
+
+
+<link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+<h1>Product category promotions</h1>
+<br />
+<br />
+
+@{
+
+    if (User.IsInRole("Admin"))
+    {
+
+        <a asp-action="Create" class="btn btn-success ml-5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+            </svg>   Add new promotion
+        </a>
+
+    }
+    <br />
+    <br />
+    <br />
+
+}
+
+
+
+<table class="table table-striped table-hover table-responsive" id="categoryPromotionsTable">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                Promotion Name
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiscountPercentage)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.EndDateOfPromotion)
+            </th>
+            <th>
+
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    <b>@Html.DisplayFor(modelItem => item.DiscountPercentage) % </b>
+                </td>
+
+                <td>
+                    <b>@Html.DisplayFor(modelItem => item.EndDateOfPromotion) </b>
+                </td>
+                <td>
+
+                    <img src="~/Images/PromotionImages/@item.ImageName" style="height:200px; width:300px;" />
+
+                </td>
+                <td>
+                    <a asp-controller="Products" asp-action="GetProductsByCategory" asp-route-id="@item.Category.ToString()" class="btn btn-primary">See products</a>
+                </td>
+
+            </tr>
+
+        }
+    </tbody>
+</table>
+<br />
+<br />
+
+
+@section Scripts
+{
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/js/categoryPromotions.js"></script>
+}

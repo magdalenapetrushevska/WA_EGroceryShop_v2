@@ -1,0 +1,108 @@
+﻿@model WA_EGroceryShop_v2.Domain.DomainModels.Product
+
+
+<h2>Add new record</h2>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageFile" class="control-label"></label> <br />
+                <input asp-for="ImageFile" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label asp-for="Category" class="input-group-text">Category: </label>
+                    </div>
+                    <select asp-for="Category" class="custom-select">
+                        <option selected>Choose...</option>
+                        @{
+                            foreach (var cat in ViewBag.ListOfCategories)
+                            {
+                                <option>@cat</option>
+                            }
+                        }
+                    </select>
+                    <span asp-validation-for="Category" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label asp-for="Subcategory" class="input-group-text">Subcategory: </label>
+                    </div>
+                    <select asp-for="Subcategory" class="custom-select">
+                        <option selected>Choose...</option>
+                        @{
+                            foreach (var subcat in ViewBag.ListOfSubcategories)
+                            {
+                                <option>@subcat</option>
+                            }
+                        }
+                    </select>
+                    <span asp-validation-for="Subcategory" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            
+
+            <label asp-for="Price" class="control-label"></label> <br />
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">$</span>
+                    </div>
+                    <input asp-for="Price" class="form-control" aria-label="Amount (to the nearest dollar)">
+                    <div class="input-group-append">
+                        <span class="input-group-text">.00</span>
+                    </div>
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="BrandName" class="control-label"></label>
+                <input asp-for="BrandName" class="form-control" />
+                <span asp-validation-for="BrandName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Origin" class="control-label"></label>
+                <input asp-for="Origin" class="form-control" />
+                <span asp-validation-for="Origin" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

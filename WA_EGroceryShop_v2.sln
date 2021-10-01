@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31019.35
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WA_EGroceryShop_v2", "WA_EGroceryShop_v2", "{75646A06-B950-4A74-8EEC-BA803993FA0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WA_EGroceryShop_v2.Web", "WA_EGroceryShop_v2.Web\WA_EGroceryShop_v2.Web.csproj", "{F9BC5411-268F-4740-A52A-1A6C5E966D12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WA_EGroceryShop_v2.Domain", "WA_EGroceryShop_v2.Domain\WA_EGroceryShop_v2.Domain.csproj", "{36A43986-00D4-48E0-BEF3-977586261D31}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WA_EGroceryShop_v2.Repository", "WA_EGroceryShop_v2.Repository\WA_EGroceryShop_v2.Repository.csproj", "{7D045C87-52CA-4922-BB11-CE2DBEA5A424}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WA_EGroceryShop_v2.Services", "WA_EGroceryShop_v2.Services\WA_EGroceryShop_v2.Services.csproj", "{BABE1797-290E-470F-8867-421E9E166EA0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F9BC5411-268F-4740-A52A-1A6C5E966D12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9BC5411-268F-4740-A52A-1A6C5E966D12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9BC5411-268F-4740-A52A-1A6C5E966D12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9BC5411-268F-4740-A52A-1A6C5E966D12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36A43986-00D4-48E0-BEF3-977586261D31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36A43986-00D4-48E0-BEF3-977586261D31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36A43986-00D4-48E0-BEF3-977586261D31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36A43986-00D4-48E0-BEF3-977586261D31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D045C87-52CA-4922-BB11-CE2DBEA5A424}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D045C87-52CA-4922-BB11-CE2DBEA5A424}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D045C87-52CA-4922-BB11-CE2DBEA5A424}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D045C87-52CA-4922-BB11-CE2DBEA5A424}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BABE1797-290E-470F-8867-421E9E166EA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BABE1797-290E-470F-8867-421E9E166EA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BABE1797-290E-470F-8867-421E9E166EA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BABE1797-290E-470F-8867-421E9E166EA0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F9BC5411-268F-4740-A52A-1A6C5E966D12} = {75646A06-B950-4A74-8EEC-BA803993FA0D}
+		{36A43986-00D4-48E0-BEF3-977586261D31} = {75646A06-B950-4A74-8EEC-BA803993FA0D}
+		{7D045C87-52CA-4922-BB11-CE2DBEA5A424} = {75646A06-B950-4A74-8EEC-BA803993FA0D}
+		{BABE1797-290E-470F-8867-421E9E166EA0} = {75646A06-B950-4A74-8EEC-BA803993FA0D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E55B59E7-A879-4A96-8390-32C547697814}
+	EndGlobalSection
+EndGlobal

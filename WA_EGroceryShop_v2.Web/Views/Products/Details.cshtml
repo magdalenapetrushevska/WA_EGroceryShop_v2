@@ -1,0 +1,159 @@
+﻿@model WA_EGroceryShop_v2.Domain.DomainModels.Product
+
+
+
+<div class="container">
+    <div class="row">
+        
+        <div class="col-3">
+
+            <a asp-action="AddProductToCart" asp-route-id="@Model.Id" class="btn btn-primary btn-lg">
+                Add to cart  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
+                    <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+                </svg>
+            </a>
+        </div>
+    </div>
+</div>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <img src="~/Images/ProductImages/@Model.ImageName" style="width:500px; height:500px;">
+        </div>
+        <div class="col-6">
+            <h4>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="blue" class="bi bi-box" viewBox="0 0 16 16">
+                    <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5 8 5.961 14.154 3.5 8.186 1.113zM15 4.239l-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z" />
+                </svg>  Product info
+            </h4>
+            <hr style="background-color: red;">
+            <div>
+                <h5 class="d-inline p-2">Name: </h5> <p class="d-inline p-2" style="font-size: large;">@Model.Name</p>
+            </div>
+
+            <div class="mt-2">
+                <h5 class="d-inline p-2">Category: </h5> <p class="d-inline p-2" style="font-size: large;">@Model.Category</p>
+            </div>
+
+            <div class="mt-2">
+                <h5 class="d-inline p-2">Subcategory: </h5> <p class="d-inline p-2" style="font-size: large;">@Model.Subcategory</p>
+            </div>
+
+            <div class="mt-2">
+                <h5 class="d-inline p-2">Price: </h5> <p class="d-inline p-2" style="font-size: large;">@Model.Price $</p>
+            </div>
+
+            <div class="mt-2">
+                <h5 class="d-inline p-2">Brand: </h5> <p class="d-inline p-2" style="font-size: large;">@Model.BrandName</p>
+            </div>
+            <div class="mt-2">
+                <h5 class="d-inline p-2">Country of оrigin: </h5> <p class="d-inline p-2" style="font-size: large;">@Model.Origin</p>
+            </div>
+
+
+            <div class="mt-3">
+                <h5 class="d-inline p-2">Short info: </h5> <p class="d-inline p-2" style="font-size: medium;">@Model.Description</p>
+            </div>
+            <div class="mt-4">
+                @{
+
+                    if (User.IsInRole("Admin"))
+                    {
+
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-info mr-2">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger mr-2">Delete</a>
+                        
+                            <a asp-controller="ProductPromotions" asp-action="Create" asp-route-id="@Model.Id" class="btn btn-outline-primary mr-2">Promote product</a>
+                       
+                    }
+
+                }
+                <a asp-action="ProductCategories">Back to List</a>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<hr />
+<div class="container">
+
+    <h1>Customer Reviews</h1>
+    <a asp-controller="Reviews" asp-action="Create" asp-route-id="@Model.Id" class="mt-3 ml-4 btn btn-primary">Add new review</a>
+
+
+
+    @{
+
+        if (Model.Reviews.Count > 0)
+        {
+            foreach (var review in Model.Reviews)
+            {
+                <div class="container card mb-3 ml-4 mt-3" style="background-color: #f8f8f8;">
+
+                    <h5>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-reply" viewBox="0 0 16 16">
+                            <path d="M6.598 5.013a.144.144 0 0 1 .202.134V6.3a.5.5 0 0 0 .5.5c.667 0 2.013.005 3.3.822.984.624 1.99 1.76 2.595 3.876-1.02-.983-2.185-1.516-3.205-1.799a8.74 8.74 0 0 0-1.921-.306 7.404 7.404 0 0 0-.798.008h-.013l-.005.001h-.001L7.3 9.9l-.05-.498a.5.5 0 0 0-.45.498v1.153c0 .108-.11.176-.202.134L2.614 8.254a.503.503 0 0 0-.042-.028.147.147 0 0 1 0-.252.499.499 0 0 0 .042-.028l3.984-2.933zM7.8 10.386c.068 0 .143.003.223.006.434.02 1.034.086 1.7.271 1.326.368 2.896 1.202 3.94 3.08a.5.5 0 0 0 .933-.305c-.464-3.71-1.886-5.662-3.46-6.66-1.245-.79-2.527-.942-3.336-.971v-.66a1.144 1.144 0 0 0-1.767-.96l-3.994 2.94a1.147 1.147 0 0 0 0 1.946l3.994 2.94a1.144 1.144 0 0 0 1.767-.96v-.667z" />
+                        </svg> Review
+                    </h5>
+                    <div class="row">
+                        <div class="col-8">
+                            <p>@review.Comment </p>
+                            <div class="mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                                </svg>
+                                <p class="d-inline"><b>Posted on:</b> @review.Posted</p>
+                            </div>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                                </svg>
+                                <p class="d-inline"><b>Posted by: </b> @review.User.Email</p>
+                            </div>
+                            <br />
+                            <p class="d-inline"><b>Rated: </b></p>
+
+
+                            @{
+
+
+                                for (int i = 0; i < (int)review.RatingGrade; i++)
+                                {
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#E1AD01" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                    </svg>
+
+                                }
+                                for (int i = 0; i < (5 - (int)review.RatingGrade); i++)
+                                {
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#E1AD01" class="bi bi-star" viewBox="0 0 16 16">
+                                        <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
+                                    </svg>
+                                }
+
+                            }
+
+
+
+                        </div>
+                        <div class="col-4">
+                            <img src="~/Images/ReviewImages/@review.ImageName" style="height:200px; width:200px;" />
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+
+
+        }
+    }
+
+
+
+</div>

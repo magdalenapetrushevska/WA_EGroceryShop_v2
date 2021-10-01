@@ -1,0 +1,79 @@
+﻿@model IEnumerable<WA_EGroceryShop_v2.Domain.DomainModels.ProductPromotion>
+
+
+<link href="~/lib/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+<h1>Individual product promotions</h1>
+<br />
+<br />
+
+
+
+<table class="table table-striped table-hover table-responsive" id="promotionsTable">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                Promotion Name
+            </th>
+            <th>
+                Product Name
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiscountPercentage)
+            </th>
+            <th>
+                Original price
+            </th>
+            <th>
+                Discounted price
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDateOfPromotion)
+            </th>
+            <th>
+                Product image
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Name)
+                </td>
+                <td>
+                    <b>@Html.DisplayFor(modelItem => item.DiscountPercentage) % </b>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product.Price) $
+                </td>
+                <td style="color:red;">
+                    <b> @Html.DisplayFor(modelItem => item.Product.DiscountPrice) $ </b>
+                </td>
+                <td>
+                    <b>@Html.DisplayFor(modelItem => item.EndDateOfPromotion) </b>
+                </td>
+                <td>
+
+                    <img src="~/Images/ProductImages/@item.Product.ImageName" style="height:200px; width:200px;" />
+
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+<br />
+<br />
+
+
+@section Scripts
+{
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="~/lib/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/js/promotionsTable.js"></script>
+}
